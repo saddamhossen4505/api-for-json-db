@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
+const productRoute = require('./routes/productRoute');
 
 
 // Init Express.
@@ -18,6 +19,10 @@ app.use(express.static('public'));
 // DataManage.
 app.use(express.json());
 app.use(express.urlencoded({ extended : false }));
+
+
+// Connect Router.
+app.use('/api/v1/product', productRoute);
 
 
 // Create Server.
