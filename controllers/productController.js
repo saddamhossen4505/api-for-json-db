@@ -103,13 +103,13 @@ const updateSingleProductData = (req, res) => {
     // Get All-Products
     const products = JSON.parse(readFileSync(path.join(__dirname, '../db/product.json')));
 
-    // Gallery Photo Manage.
-    const gallery = []
-    req.files.gallery_photo.forEach(items => {
-        gallery.push(items.filename);
-    });
-
     if( products.some( data => data.id == req.params.id )){
+
+        // Gallery Photo Manage.
+        const gallery = []
+        req.files.gallery_photo.forEach(items => {
+            gallery.push(items.filename);
+        });
 
         // Find IndexNumber This Data to json db.
         products[products.findIndex( data => data.id == req.params.id )] = {
