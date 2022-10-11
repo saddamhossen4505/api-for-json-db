@@ -45,7 +45,6 @@ const createNewPorduct = (req, res) => {
     // Add NewData to json db.
     products.push({
         id : id, 
-        status : req.body.status,
         ...req.body, 
         photo : req.files.product_photo[0].filename,
         gallery : gallery,
