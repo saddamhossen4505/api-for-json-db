@@ -40,9 +40,13 @@ const createNewPorduct = (req, res) => {
         gallery.push(items.filename);
     });
 
+    // Check Status.
+    const status = true;
+
     // Add NewData to json db.
     products.push({
         id : id, 
+        status : status,
         ...req.body, 
         photo : req.files.product_photo[0].filename,
         gallery : gallery,
