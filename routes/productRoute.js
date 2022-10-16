@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     destination : (req, file, cb) => {
 
         if( file.mimetype == "image/png" || file.mimetype == 'image/jpg' || file.mimetype == 'image/jpeg' || file.mimetype == 'image/webp'){
-            cb(null, path.join(__dirname, '../public/product/images'));
+            cb(null, path.join(__dirname, '../public/images'));
         }else {
             console.log('Invalid photo formate');
         };

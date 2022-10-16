@@ -107,18 +107,23 @@ const updateSingleProductData = (req, res) => {
 
     if( products.some( data => data.id == req.params.id )){
 
+        // Get photo and galleryData.
+        const { photo, gallery } = products[products.findIndex( data => data.id == req.params.id )]
+        
         // Gallery Photo Manage.
-        const gallery = []
-        req.files.gallery_photo.forEach(items => {
-            gallery.push(items.filename);
-        });
+        if( req.files.gallery_photo){
+            const gallery1 = []
+            req.files.gallery_photo.forEach(items => {
+                gallery1.push(items.filename);
+            });
+        };
 
         // Find IndexNumber This Data to json db.
         products[products.findIndex( data => data.id == req.params.id )] = {
             ...products[products.findIndex( data => data.id == req.params.id)],
             ...req.body,
-            photo : req.files.product_photo[0].filename,
-            gallery : gallery,
+            photo : req.files.product_photo ? req.files.product_photo[0].filename : `${photo}`,
+            gallery : req.files.gallery_photo ? `${gallery1}` : `${gallery}`,
         };
 
         // Now NewData Store to json db.
